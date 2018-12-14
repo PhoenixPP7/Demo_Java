@@ -1,11 +1,11 @@
-package _08_review;
+/*package _08_review;
 
 abstract class Animal {
   private String name;
   Animal(String name) {this.name = name;}
 
 //  public void enjoy(){
-//    System.out.println("½ÐÉù......");
+//    System.out.println("ï¿½ï¿½ï¿½ï¿½......");
 //  }
   public abstract void enjoy();
 }
@@ -17,7 +17,7 @@ class Cat extends Animal {
   }
   
   public void enjoy() {
-    System.out.println("Ã¨½ÐÉù......");
+    System.out.println("Ã¨ï¿½ï¿½ï¿½ï¿½......");
   }  
 //  public abstract void enjoy();
 }
@@ -27,7 +27,7 @@ class Dog extends Animal {
   Dog(String n,String c) {super(n); furColor = c;}
  
   public void enjoy() {
-    System.out.println("¹·½ÐÉù......");
+    System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½......");
   }
 }
 
@@ -36,7 +36,7 @@ class Bird extends Animal {
 	 	 super("bird");
 	 }
 	 public void enjoy() {
-    System.out.println("Äñ½ÐÉù......");
+    System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½......");
   }
 }
 
@@ -65,3 +65,4 @@ public class TestPolymoph {
         l3.myPetEnjoy();
     }
 }
+*/

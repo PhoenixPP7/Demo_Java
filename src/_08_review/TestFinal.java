@@ -1,4 +1,4 @@
-package _08_review;
+/*package _08_review;
 public class TestFinal {
 	public static void main(String[] args) {
 		T t = new T();
@@ -18,4 +18,4 @@ class TT extends T {
 		//j = 9;
 	}
 
-}
+}*/

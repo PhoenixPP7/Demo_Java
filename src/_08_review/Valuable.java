@@ -1,4 +1,4 @@
-package _08_review;
+/*package _08_review;
 
 public interface Valuable {
 	public double getMoney();
@@ -49,4 +49,4 @@ class Hen implements A  {
 	
 	public void getMoney() {}
 
-}
+}*/

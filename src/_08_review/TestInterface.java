@@ -1,4 +1,4 @@
-package _08_review;
+/*package _08_review;
 
 public class TestInterface {
 	PetCarer pc = new Worker();
@@ -17,4 +17,4 @@ class Worker implements PetCarer {
 	public void playWithPet() {
 		System.out.println("Worker play with pet ... ");
 	}
-}
+}*/
