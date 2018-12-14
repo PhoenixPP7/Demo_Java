@@ -1,0 +1,72 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<!-- 现在使用的版本号 -->
+<modelVersion>4.0.0</modelVersion>
+<!-- 开发项目的组织名称 -->
+<groupId>DemoMaven</groupId>
+<!-- 开发模块的名称 -->
+<artifactId>DemoMaven</artifactId>
+<!-- 模块的版本编号 -->
+<version>0.0.1-SNAPSHOT</version>
+<!-- Maven本身是一个打包工具,生成的文件是"*.jar"文件 -->
+<packaging>war</packaging>
+<!-- 组件的模块名称 -->
+<name>DemoMaven</name>
+<!-- 远程仓库的名字 -->
+<!-- FIXME change it to the project's website -->
+<url>http://maven.apache.org</url>
+<description/>
+<!-- 定义相关操作属性 -->
+<properties>
+<!-- 定义源文件使用的编码为UTF-8 -->
+  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+</properties>
+<!-- 表示该组件的依赖库关系 -->
+<dependencies>
+  <dependency>
+    <groupId>javax</groupId>
+    <artifactId>javaee-api</artifactId>
+    <version>7.0</version>
+    <scope>provided</scope>
+  </dependency>
+  <dependency>
+    <groupId>org.glassfish.web</groupId>
+    <artifactId>javax.servlet.jsp.jstl</artifactId>
+    <version>1.2.2</version>
+  </dependency>
+  <dependency>
+   <groupId>mysql</groupId>
+   <artifactId>mysql-connector-java</artifactId>
+   <version>8.0.12</version>
+  </dependency>
+</dependencies>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>src</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+          <warSourceDirectory>${basedir}/WebRoot</warSourceDirectory>
+          <version>3.1</version>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

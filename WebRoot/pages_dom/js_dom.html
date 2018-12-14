@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>js_dom.html</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+    	window.onload = function() {
+    		document.getElementById("loadBut").addEventListener("click",handleOption,false);// click = 单击事件;
+    		document.getElementById("ch").addEventListener("dblclick",changeOption,false);// dblclick = 双击事件; changeOption函数不能加括号;
+    		document.getElementById("inst").addEventListener("dblclick",changeOption2,false);
+    		document.getElementById("addBut").addEventListener("click",insertTable,false);
+    	}
+    	
+    	var cityValue = new Array("101","102","103");
+    	var cityLabel = new Array("北京","上海","广东");
+    	function handleOption(){
+    		//生成下拉菜单中所有选项内容
+    		var cityElement = document.getElementById("city");
+    		cityElement.length = 1 ;//清空下拉列表项,设置保留的个数;
+    		for (var x = 0 ; x < cityValue.length ; x ++) {
+    			var optionElement = document.createElement("option");
+    			optionElement.setAttribute("value",cityValue[x]);
+    			optionElement.appendChild(document.createTextNode(cityLabel[x]));
+    			cityElement.appendChild(optionElement);
+    		}
+    	}
+    	
+    	function changeOption(){
+    		//使用this关键字描述当前操作的选项;
+    		var value = this.value;
+    		var label;//用于保存标签结果;
+    		var optionSelected = getElement("ch",value);
+    		label = optionSelected.firstChild.nodeValue;
+			//取出标签后,向下面的下拉菜单设置选项内容;
+    		append("inst",value,label);
+    		deleteElement("ch",optionSelected);
+    	}
+    	function changeOption2(){
+    		var value = this.value;
+    		var label;
+    		var optionSelected = getElement("inst",value);
+	    	label = optionSelected.firstChild.nodeValue;
+	    	append("ch",value,label);
+	    	deleteElement("inst",optionSelected);
+    	}
+    	
+    	// 删除下拉列表中已选定的option对象
+    	function deleteElement(eleName,option){
+    		document.getElementById(eleName).removeChild(option);
+    	}
+    	
+    	// 取出下拉列表中选定的option对象
+    	function getElement(eleName,value) {
+    		// 找到发出选项的元素内容;
+    		var optionEle = document.getElementById(eleName).getElementsByTagName("option");
+    		// 依次比较每一个option元素的内容,并取出标签内容
+    		for (var x = 0 ; x < optionEle.length ; x ++) {
+    			if (optionEle[x].getAttribute("value") == value) {
+    				return optionEle[x];
+    			}
+    		}
+    	}
+    	
+    	function append(eleName,value,label) {
+    		var optionElement = document.createElement("option");
+    		optionElement.setAttribute("value",value);
+    		optionElement.appendChild(document.createTextNode(label));
+    		document.getElementById(eleName).appendChild(optionElement);
+    	}
+    	
+    	var count = 0 ;
+    	function insertTable(){
+	    	var tr = document.createElement("tr");
+	    	var deptnoTd = document.createElement("td");
+	    	var dnameTd = document.createElement("td");
+	    	var operTd = document.createElement("td");
+			deptnoTd.appendChild(document.createTextNode(count));
+			dnameTd.appendChild(document.createTextNode("部门名称 - " + count));
+			count ++ ;
+			//将<td>元素作为子节点追加至<tr>元素
+	    	tr.appendChild(deptnoTd);
+	    	tr.appendChild(dnameTd);
+	    	//实现operTd元素删除按钮功能;
+	    	var deleteButton = document.createElement("input");
+	    	deleteButton.setAttribute("type","button");
+	    	deleteButton.setAttribute("value","删除部门");
+			deleteButton.addEventListener("click",function(){
+				tr.parentNode.removeChild(tr);
+			},false);
+			operTd.appendChild(deleteButton);
+			
+	    	tr.appendChild(operTd);
+	    	document.getElementById("tab").appendChild(tr);
+    	}
+    	function deleteLine(){
+    		
+    	}
+    </script>
+  </head>
+  <body>
+  	<div>
+  		请选择城市 = <select id="city">
+  						<option value="0">
+  						=====选择城市=====
+  						</option>
+  					</select>
+  		<button type="button" id="loadBut">加载城市信息</button>
+  	</div>
+  	
+  	<div id="firstDiv">
+  		选择你的兴趣 = <select id="ch" size="5">
+  						<option value="101">唱歌</option>
+  						<option value="102">跳舞</option>
+  						<option value="103">游泳</option>
+  						<option value="104">读书</option>
+  						<option value="105">音乐</option>
+  					</select>
+  	</div>
+  	<div id="secondDiv">
+  		你的兴趣是 = <select id="inst" size="5"></select>
+  	</div>
+  	
+  	<div>
+  		<table border="1" id="tab">
+  			<tr>
+  				<td>部门编号</td>
+  				<td>部门名称</td>
+  				<td>操作</td>
+  			</tr>
+  		</table>
+  		<input type="button" id="addBut" value="增加部门行">
+  	</div>
+  </body>
+</html>
+<!-- 
+	<option value="真实内容">显示标签</option>
+		说明=
+			option=元素名称
+			value=元素的属性名称
+			真实内容=属性的内容
+			显示标签=文本内容
+ -->

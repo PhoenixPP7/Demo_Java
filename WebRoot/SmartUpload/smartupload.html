@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SmartUpload</title>
+<meta charset="UTF-8">
+<style type="text/css">
+#preview, .img, img {
+	width: 200px;
+	height: 200px;
+}
+#preview {
+	border: 1px solid #000;
+}
+</style>
+</head>
+<body>
+<form action="upload.jsp" method="post" enctype="multipart/form-data">
+	姓名=<input type="text" name="name"><br>
+	年龄=<input type="text" name="age"><br>
+	选择照片:<input type="file" name="pic" onchange="preview(this)"><br>
+	<input type="submit" value="上传">
+</form>
+<div id="preview"></div>
+</body>
+<script type="text/javascript">
+	function preview(file) {
+		var prevDiv = document.getElementById('preview');
+		if (file.files && file.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(evt) {
+				prevDiv.innerHTML = '<img src="' + evt.target.result + '" />';
+			}
+			reader.readAsDataURL(file.files[0]);
+		} else {
+			prevDiv.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+		}
+	}
+</script>
+</html>
+
+<!-- 
+=====[SmartUpload]说明=
+	在lib文件夹下导入[SmartUpload.jar]组件
+	[smartupload.html]-设计要求=
+		进行文件上传的表单必须进行封装;---[smartupload.html]
+	[upload.jsp]-设计要求=
+		1.实例化SmartUpload类对象;
+		2.初始化上传环境;
+		3.接受所有的上传数据;
+		4.进行文件保存;
+		
+		上传文件命名方式
+			方式1=使用"IP地址+时间戳+三位随机数字";
+			方式2=(推荐)使用java.util.UUID类;
+		
+		SmartUpload
+			取得所有的上传文件对象=public SmartFiles getFiles();
+			取得上传文件的个数=public int getCount();
+			取得上传文件的大小=public long getSize();
+			根据索引取得每一个上传文件=public SmartFile getFile(int index);
+			取得上传文件的扩展名=public String getFileExt();
+			保存文件=public void saveAs(String path);
+			
+ -->
